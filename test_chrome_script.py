@@ -11,15 +11,18 @@ def test_chrome_script():
 
 @given('Open Google Chrome browser')
 def open_chrome():
+    """Calling Helper Function"""
     helper()
 
 
 @when('On search bar type w3school and press enter key')
 def write_url():
+    """Calling Simulate_Typing Function"""
     simulate_typing()
 
 
 @then('Checking the url open in chrome is desired or not')
 def validate_url():
+    """Calling Validate Function"""
     search_text = validate()
     assert search_text == "https://w3schools.com/"
