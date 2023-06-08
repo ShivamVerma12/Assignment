@@ -26,7 +26,7 @@ def login(context):
     login_button = context.driver.find_element(By.CSS_SELECTOR, "[type='submit']")
 
     # Enter the login credentials
-    emailaddress_field.send_keys("test123456789@mailinator.com")
+    emailaddress_field.send_keys("test25@mailinator.com")
     password_field.send_keys(123456)
 
     # Click the login button to login
@@ -64,12 +64,14 @@ def step_def(context):
 @when('User starts a new project, enter the project title and click continue')
 def step_def(context):
     """Class start_project to start a new project"""
+
+    project_filed = WebDriverWait(context.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//nav[@class='organization-links'] //ul//a[1]")))
+    project_filed.click()
+
     startproject_field = WebDriverWait(context.driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".new-project")))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".rounded-button.solid")))
     startproject_field.click()
-    # startproject_field = WebDriverWait(context.driver, 10).until(
-    #         EC.presence_of_element_located((By.CSS_SELECTOR, ".rounded-button.solid")))
-    # startproject_field.click()
 
     context.project_name = str(''.join(random.choices(string.ascii_letters, k=6)))
     title_field = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.NAME, "title")))
